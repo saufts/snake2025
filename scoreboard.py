@@ -4,4 +4,4 @@ class Scoreboard(Turtle):
     def __init__(self):
         super().__init__()
         self.write()
-        #test
+        #test drugi
