@@ -4,7 +4,6 @@ from food import Food
 from scoreboard import Scoreboard
 import time
 
-#testowa zmiana
 
 screen = Screen()
 screen.setup(width=600, height=600)
@@ -34,13 +33,26 @@ while game_is_on:
     if snake.head.distance(food) < 15:
         print('nom')
         food.refresh()
+        snake.extend()
         scoreboard.refresh()
         print(scoreboard.score)
 
     #detect collision with wall
-    if snake.head.xcor() > 280 or snake.head.xcor() < -280  or snake.head.ycor() > 280 or snake.head.ycor() < -280:
+    if snake.head.xcor() > 290 or snake.head.xcor() < -290  or snake.head.ycor() > 290 or snake.head.ycor() < -290:
         print('game over')
         scoreboard.game_over()
         game_is_on = False
+
+    #detect collision with tail
+    for segment in snake.segments:
+        if segment == snake.head:
+            pass
+        elif snake.head.distance(segment) < 10:
+            game_is_on = False
+            scoreboard.game_over()
+
+    #if head collides with any segment in the tail
+        #trigger game_over
+
 
 screen.exitonclick()
